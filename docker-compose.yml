@@ -1,6 +1,22 @@
 version: "3.1"
 
 services:
+  nginx:
+    image: linuxserver/nginx
+    container_name: nginx
+    restart: always
+    networks:
+      - mediarr
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+    - PGID=1001
+    - PUID=1001
+    - TZ=${TIMEZONE}
+    volumes:
+      - ${RUNTIME_PATH}/nginx:/config
+
   radarr:
     image: linuxserver/radarr
     container_name: radarr
@@ -12,7 +28,7 @@ services:
     environment:
       - PGID=1000
       - PUID=1000
-      - TZ=Europe/London
+      - TZ=${TIMEZONE}
     volumes:
       - ${RUNTIME_PATH}/radarr:/config
       - ${RUNTIME_PATH}/transmission/completed:/downloads
@@ -29,7 +45,7 @@ services:
     environment:
       - PGID=1000
       - PUID=1000
-      - TZ=Europe/London
+      - TZ=${TIMEZONE}
     volumes:
       - ${RUNTIME_PATH}/sonarr:/config
       - ${MEDIA_PATH}/TV-Shows:/tv
@@ -46,7 +62,7 @@ services:
     environment:
       - PGID=1000
       - PUID=1000
-      - TZ=Europe/London
+      - TZ=${TIMEZONE}
     volumes:
       - ${RUNTIME_PATH}/jackett:/config
       - ${RUNTIME_PATH}/jackett/downloads:/downloads
@@ -59,15 +75,33 @@ services:
       - mediarr
     ports:
       - "9091:9091"
-    environment:
-      - OPENVPN_PROVIDER=${VPN_PROVIDER}
-      - OPENVPN_CONFIG=${VPN_CONFIG}
-      - OPENVPN_USERNAME=${VPN_USERNAME}
-      - OPENVPN_PASSWORD=${VPN_PASSWORD}
-      - OPENVPN_OPTS="--inactive 3600 --ping 10 --ping-exit 60"
     volumes:
       - ${RUNTIME_PATH}/transmission:/data
       #- /etc/localtime:/etc/localtime:ro
+    environment:
+      #- PGID=1000
+      #- PUID=1000
+      - TZ=${TIMEZONE}
+
+  rutorrent:
+    image: linuxserver/rutorrent
+    container_name: rutorrent
+    restart: always
+    networks:
+      - mediarr
+    ports:
+      - "8080:8080"
+      - "5000:5000"
+      - "51413:51413"
+      - "6881:6881"
+    volumes:
+      - ${RUNTIME_PATH}/rutorrent:/data
+      - ${RUNTIME_PATH}/rutorrent/downloads:/downloads
+      #- /etc/localtime:/etc/localtime:ro
+    environment:
+      - PGID=1000
+      - PUID=1000
+      - TZ=${TIMEZONE}
 
   plex:
     image: timhaak/plex
@@ -89,7 +123,7 @@ services:
     environment:
       - PGID=1000
       - PUID=1000
-      - TZ=Europe/Stockholm
+      - TZ=${TIMEZONE}
     volumes:
       - ${RUNTIME_PATH}/plex:/config
       - ${MEDIA_PATH}:/data
