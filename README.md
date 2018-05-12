@@ -8,7 +8,8 @@
 
 ## What is Mediarr?
 
-Mediarr is a set of Docker containers that run Plex, Radarr, Sonarr, Jackett, Rtorrent and Rutorrent.
+Mediarr is a set of Docker containers that run Plex, Radarr, Sonarr, Jackett, Rtorrent, Rutorrent and Nginx.
+
 
 ## Getting started
 

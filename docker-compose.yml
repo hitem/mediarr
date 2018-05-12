@@ -11,9 +11,9 @@ services:
       - "80:80"
       - "443:443"
     environment:
-    - PGID=1001
-    - PUID=1001
-    - TZ=${TIMEZONE}
+      - PGID=1000
+      - PUID=1000
+      - TZ=${TIMEZONE}
     volumes:
       - ${RUNTIME_PATH}/nginx:/config
 
@@ -90,7 +90,7 @@ services:
     networks:
       - mediarr
     ports:
-      - "8080:8080"
+      - "8080:80"
       - "5000:5000"
       - "51413:51413"
       - "6881:6881"

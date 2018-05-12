@@ -1,0 +1,5 @@
+keys/*
+log/*
+php/*
+nginx/nginx.conf
+!.gitignore
