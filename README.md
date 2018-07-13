@@ -31,7 +31,7 @@ Make a copy of `.env.example` to `.env`. Edit `.env` to suit your environment, e
 
 
 ##### Start
-Now you may start the Docker containers.
+To setup you may start the Docker containers.
 ```
 docker-compose up
 ```
@@ -41,10 +41,31 @@ If you rather have them run in background (daemonizing).
 docker-compose up -d
 ```
 
+Once everything is setup you might not want to update the Docker containers every time you start them, then you can run this command to speed up the starting process.
+```
+docker-compose start
+```
+
 ##### Stop
 Stop the Docker containers.
 ```
 docker-compose stop
+```
+
+Stop & Remove the Docker containers.
+```
+docker-compose down
+```
+
+##### Remove
+Remove all stopped containers.
+```
+docker-compose rm
+```
+
+Remove all stopped & existing containers incase of conflicts.
+```
+docker rm $(docker ps -aq)
 ```
 
 #### Shell Access
