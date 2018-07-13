@@ -57,15 +57,15 @@ Stop & Remove the Docker containers.
 docker-compose down
 ```
 
+Stop all existing docker containers & remove them.
+```
+docker stop $(docker ps -aq)
+```
+
 ##### Remove
 Remove all stopped containers.
 ```
 docker-compose rm
-```
-
-Remove all stopped & existing containers incase of conflicts.
-```
-docker rm $(docker ps -aq)
 ```
 
 #### Shell Access
