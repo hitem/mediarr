@@ -41,7 +41,7 @@ If you rather have them run in background (daemonizing).
 docker-compose up -d
 ```
 
-Once everything is setup you might not want to update the Docker containers every time you start them, then you can run this command to speed up the starting process.
+Once everything is setup you might not want to update the Docker containers every time you start them, then you can run this command to speed up the starting process. However, its highly recommended to update them frequently.
 ```
 docker-compose start
 ```
