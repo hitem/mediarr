@@ -44,7 +44,7 @@ docker-compose up -d
 ##### Stop
 Stop the Docker containers.
 ```
-docker-compose down -d
+docker-compose stop
 ```
 
 #### Shell Access
